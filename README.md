@@ -30,6 +30,9 @@ Service ini didevelop dengan:
 git clone https://github.com/dika22/app-cms.git
 cd nama-project
 
+# Important
+Status Article 1: draft 2: publish 3: archived
+
 # set .env
 cp -R .env.copy to .env
 create name db
@@ -60,6 +63,9 @@ note : sesuaikan alamat url
 ```bash
 cd nama-project atau auth-service
 
+# important
+Role : 1 SuperAdmin, 2 : Editor 3 : Writer 4 : user biasa
+
 # set .env
 cp -R .env.copy to .env
 create name db
@@ -82,4 +88,8 @@ make test
 # how run swagger port sesuaikan dengan yang di .env
 http://localhost:3000/swagger/index.html
 note : sesuaikan alamat url
+```
+# Noted :
+```bash 
+- Seharusnya untuk GET implementasi REDIS 
 ```
