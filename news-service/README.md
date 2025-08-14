@@ -1,0 +1,75 @@
+# News Service
+
+Deskripsi singkat tentang proyek Golang ini.
+
+## 🚀 Fitur
+
+- Create Article [status : draft]
+- Update Article [status : publish]
+- Get Articles
+- Get Article by ID
+
+## Implementation
+- Ratelimit -> handle by ip per request second
+- Singleflight -> jika ada banyak request and cache expired, 
+  hanya akan ada 1 request yang melakukan query ke DB dan write ke cache
+
+## 🛠️ Teknologi
+
+Service ini didevelop dengan:
+
+- [Go](https://golang.org/) versi 1.23
+- Modul Go (`go mod`)
+- Database: PostgreSQL, ElasticSearch
+- Cache: Redis
+- Queue: RabbitMQ
+- Tambahan: Docker
+
+## 🧑‍💻 How Run Service
+
+```bash
+# clone repository
+git clone https://news-service
+cd nama-proyek
+
+# set .env
+cp -R .env.copy to .env
+create name db
+import table
+
+# generate swagger
+swag init
+
+# Cara menjalankan http 
+make http-serve
+
+# Cara menjalankan worker
+make start-worker
+
+# how run unit test
+make test
+
+# how run swagger port sesuaikan dengan yang di .env
+http://localhost:8001/swagger/index.html
+note : sesuaikan alamat url
+```
+
+### How run use docker 
+```bash
+# run use docker
+# Jalankan HTTP server
+docker-compose up news-service #sesuaikan nama app jika perlu
+
+# Jalankan worker background
+docker-compose up worker
+
+# Jalankan test
+docker-compose run test
+```
+
+## Diagram Activity
+### Create Article
+![alt text](https://news-service/blob/main/create_article.png)
+
+### Update Article
+![alt text](https://news-service/blob/main/update_article.png)

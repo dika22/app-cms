@@ -1,0 +1,30 @@
+definitions:
+  structs.Response:
+    properties:
+      message:
+        type: string
+      result: {}
+      status:
+        type: boolean
+      status_code:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/users/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/structs.Response'
+      summary: Get all users
+      tags:
+      - tags
+swagger: "2.0"
