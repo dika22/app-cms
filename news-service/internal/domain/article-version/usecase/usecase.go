@@ -12,7 +12,7 @@ type ArticleVersionUsecase struct {
 }
 type IArticleVersionUsecase interface {
 	ListArticleVersion(ctx context.Context) ([]structs.ArticleVersion, error)
-	CreateArticleVersion(ctx context.Context, req structs.RequestCreateArticleVersion) error
+	UpdateArticleVersion(ctx context.Context, req structs.RequestCreateArticleVersion) error
 	GetArticleVersionByArticleID(ctx context.Context, id int64) (*structs.ResponseArticleVersionByArticleID, error)
 	GetArticleVersionByIDAndVersion(ctx context.Context, id int64, versionNumber int64) (*structs.ArticleVersionDetail, error)
 	GetArticleVersionByArticleIDAndVersion(ctx context.Context, id int64, versionNumber int64) (*structs.ArticleVersionDetail, error)

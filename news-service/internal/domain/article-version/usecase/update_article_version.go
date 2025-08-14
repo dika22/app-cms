@@ -5,7 +5,7 @@ import (
 	"news-service/package/structs"
 )
 
-func (u *ArticleVersionUsecase) CreateArticleVersion(ctx context.Context, req structs.RequestCreateArticleVersion) error {
+func (u *ArticleVersionUsecase) UpdateArticleVersion(ctx context.Context, req structs.RequestCreateArticleVersion) error {
 	max, err := u.repo.GetMaxVersionNumber(ctx, req.ArticleID)
 	if err != nil { return err }
 	nextVersionNumber := max + 1
@@ -41,7 +41,7 @@ func (u *ArticleVersionUsecase) CreateArticleVersion(ctx context.Context, req st
 	}
 
 	articleVersion := req.NewArticleVersionWithArticleID(int64(nextVersionNumber), tags)
-	return u.repo.CreateArticleVersion(ctx, articleVersion)
+	return u.repo.UpdateArticleVersionByArticleID(ctx, articleVersion)
 }
 
 // computeArticleTagRelationshipScore menghitung skor relasi antar tag dalam 1 artikel.

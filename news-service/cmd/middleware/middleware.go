@@ -53,7 +53,6 @@ func AuthEditorMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
         }
 
         tokenStr = strings.Replace(tokenStr, "Bearer ", "", 1)
-        fmt.Println("debug", cfg.JwtSecretKey)
         userID, role, err := utils.ValidateJWT(tokenStr, cfg) // role ikut divalidasi
         if err != nil {
             return echo.NewHTTPError(http.StatusUnauthorized, "Invalid token")

@@ -13,7 +13,7 @@ type ArticleVersionRepository struct {
 }
 
 type IArticleVersionRepository interface {
-	CreateArticleVersion(ctx context.Context, payload structs.ArticleVersion) error
+	UpdateArticleVersionByArticleID(ctx context.Context, payload structs.ArticleVersion) error
 	UpdateByArticleIDAndVersion(ctx context.Context, payload *structs.ArticleVersion) error
 	GetArticleVersionByArticleIDAndVersion(ctx context.Context, payload structs.RequestGetArticle, dest interface{}) error
 	GetArticleVersionByArticleID(ctx context.Context, id int64, dest interface{}) error
@@ -22,6 +22,7 @@ type IArticleVersionRepository interface {
 	GetMaxVersionNumber(ctx context.Context, articleID int64) (int, error)
 	GetArticleVersionByIDAndVersion(ctx context.Context, payload structs.RequestGetArticle, dest interface{}) error
 	GetArticleVersionByArticleIDs(ctx context.Context, id []int64, dest interface{}) error
+	CreateArticleVersion(ctx context.Context, payload structs.ArticleVersion) error 
 }
 
 func NewArticleVersionRepository(db *gorm.DB) IArticleVersionRepository {

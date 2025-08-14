@@ -2,6 +2,7 @@ package delivery
 
 import (
 	"net/http"
+	"news-service/cmd/middleware"
 	"news-service/internal/domain/article-version/usecase"
 	"news-service/package/response"
 	"news-service/package/structs"
@@ -44,8 +45,8 @@ func (h ArticleVersionHTTP) GetAll(c echo.Context) error {
 // @Param        id path int true "Article ID"
 // @Param        request body structs.RequestCreateArticleVersion true "Article version to create"
 // @Success      201      {object}  structs.Response
-// @Router       /api/v1/articles/{id}/versions [post]
-func (h ArticleVersionHTTP) CreateArticleVersion(ctx echo.Context) error {
+// @Router       /api/v1/articles/{id}/versions [put]
+func (h ArticleVersionHTTP) UpdateArticleVersion(ctx echo.Context) error {
 	id := ctx.Param("article_id")
 	if id == "" {
 		return response.JSONResponse(ctx, http.StatusBadRequest, false, "id required", nil)
@@ -55,7 +56,7 @@ func (h ArticleVersionHTTP) CreateArticleVersion(ctx echo.Context) error {
 		return response.JSONResponse(ctx, http.StatusBadRequest, false, err.Error(), nil)
 	}
 	req.ArticleID = cast.ToInt64(id)
-	if err := h.uc.CreateArticleVersion(ctx.Request().Context(), req); err != nil {
+	if err := h.uc.UpdateArticleVersion(ctx.Request().Context(), req); err != nil {
 		return response.JSONResponse(ctx, http.StatusBadRequest, false, err.Error(), nil)
 	}
 	return nil
@@ -140,6 +141,6 @@ func NewArticleVersionHTTP(r *echo.Group, uc usecase.IArticleVersionUsecase, v *
 	u := ArticleVersionHTTP{uc: uc, v: v}
 	r.GET("/articles/versions", u.GetAll).Name = "article-version.get-all"
 	r.GET("/articles/:article_id/versions", u.ListArticleVersionsByArticleID).Name = "article-version.list-by-article-id"
-	r.POST("/articles/:article_id/versions", u.CreateArticleVersion).Name = "article-version.create"
+	r.PUT("/articles/:article_id/versions", u.UpdateArticleVersion, middleware.AuthEditorMiddleware).Name = "article-version.create"
 	r.GET("/articles/:article_id/versions/:version_number", u.GetArticleVersionByArticleID).Name = "article-version.get-by-article-id"
 }

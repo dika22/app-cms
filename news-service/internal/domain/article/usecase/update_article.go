@@ -33,8 +33,6 @@ func (u *ArticleUsecase) UpdatePublishArticle(ctx context.Context, req *structs.
 		articleVersion.UpdatedBy = req.AuthorID
 		articleVersion.Status = constant.Published
 		newStatus = constant.Published
-		articleVersion.ContentHTML = req.ContentHTML
-		articleVersion.Title = req.Title
 	}
 
 	if err := u.avRepo.UpdateByArticleIDAndVersion(ctx, &articleVersion); err != nil {

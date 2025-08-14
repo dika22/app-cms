@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-
 	"news-service/package/structs"
 )
 
