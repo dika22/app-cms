@@ -1,7 +1,5 @@
 # News Service
-
 Deskripsi singkat tentang proyek Golang ini.
-
 ## 🚀 Fitur
 
 - Create Article [status : draft]
@@ -20,25 +18,25 @@ Service ini didevelop dengan:
 
 - [Go](https://golang.org/) versi 1.23
 - Modul Go (`go mod`)
-- Database: PostgreSQL, ElasticSearch
+- Database: PostgreSQL
 - Cache: Redis
-- Queue: RabbitMQ
 - Tambahan: Docker
 
 ## 🧑‍💻 How Run Service
 
 ```bash
 # clone repository
-git clone https://news-service
-cd nama-proyek
+git clone https://github.com/dika22/app-cms.git
+cd nama-project
 
 # set .env
 cp -R .env.copy to .env
 create name db
-import table
+# how migrate
+make migrate
 
 # generate swagger
-swag init
+swag init or make swag
 
 # Cara menjalankan http 
 make http-serve
@@ -48,6 +46,7 @@ make start-worker
 
 # how run unit test
 make test
+
 
 # how run swagger port sesuaikan dengan yang di .env
 http://localhost:8001/swagger/index.html
@@ -66,10 +65,3 @@ docker-compose up worker
 # Jalankan test
 docker-compose run test
 ```
-
-## Diagram Activity
-### Create Article
-![alt text](https://news-service/blob/main/create_article.png)
-
-### Update Article
-![alt text](https://news-service/blob/main/update_article.png)
