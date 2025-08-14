@@ -21,6 +21,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	echoSwagger "github.com/swaggo/echo-swagger"
 	"github.com/urfave/cli/v2"
+
+	_ "auth-service/docs"
 )
 
 const CmdServeHTTP = "serve-http"
@@ -39,7 +41,7 @@ func (h HTTP) ServeAPI(c *cli.Context) error {
 
 	e := echo.New()
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
-
+	
 	e.GET("/health-check", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, "ok!")
 	})
