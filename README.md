@@ -55,6 +55,18 @@ make test
 # how run swagger port sesuaikan dengan yang di .env
 http://localhost:8001/swagger/index.html
 note : sesuaikan alamat url
+
+# example with CURL :
+curl --location 'http://localhost:8001/api/v1/articles' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTUyMjkxNjIsInJvbGUiOjMsInVzZXJfaWQiOjN9.VeyO6CsFsgJTxBH0FMGvbtZN0nCT4_NqDZIQddrfEDI' \
+--header 'Content-Type: application/json' \
+--data '{
+    "author_id" : 1,
+    "article_category_id" :1,
+    "title":"Indonesia selangkah lagi menuju piala dunia",
+    "content":"<p>Indonesia selangkah lagi menuju piala dunia/p>",
+    "tags":["bola", "worldcup", "indonesia", "pialadunia"]
+}'
 ```
 
 
@@ -88,6 +100,17 @@ make test
 # how run swagger port sesuaikan dengan yang di .env
 http://localhost:3000/swagger/index.html
 note : sesuaikan alamat url
+
+#example with CURL
+curl --location 'http://localhost:3000/api/v1/users/signup' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "pamungkas",
+    "email": "adhika@gmail.com",
+    "password": "qwerty123",
+    "role" : 3
+}'
+
 ```
 # Noted :
 ```bash 

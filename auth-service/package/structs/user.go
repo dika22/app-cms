@@ -1,7 +1,6 @@
 package structs
 
 import (
-	"auth-service/internal/constant"
 	"auth-service/package/utils"
 	"time"
 )
@@ -21,7 +20,7 @@ func (p RequestSignUp) NewUser() User {
 		Email:     p.Email,
 		Password:  utils.HashPassword(p.Password),
 		Name:      p.Name,
-		Role:      constant.RoleUser,
+		Role:      p.Role,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
