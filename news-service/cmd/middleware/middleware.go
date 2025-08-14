@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -25,8 +24,6 @@ func AuthMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
         if tokenStr == "" {
             return echo.NewHTTPError(http.StatusUnauthorized, "Missing token")
         }
-        fmt.Println("debug", cfg.JwtSecretKey)
-
         tokenStr = strings.Replace(tokenStr, "Bearer ", "", 1)
         userID, role, err := utils.ValidateJWT(tokenStr, cfg)
         if err != nil {

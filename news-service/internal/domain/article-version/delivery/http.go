@@ -139,8 +139,8 @@ func (h ArticleVersionHTTP) GetArticleVersionByArticleID(ctx echo.Context) error
 
 func NewArticleVersionHTTP(r *echo.Group, uc usecase.IArticleVersionUsecase, v *validator.Validator)  {
 	u := ArticleVersionHTTP{uc: uc, v: v}
-	r.GET("/articles/versions", u.GetAll).Name = "article-version.get-all"
-	r.GET("/articles/:article_id/versions", u.ListArticleVersionsByArticleID).Name = "article-version.list-by-article-id"
+	r.GET("/articles/versions", u.GetAll, middleware.AuthMiddleware).Name = "article-version.get-all"
+	r.GET("/articles/:article_id/versions", u.ListArticleVersionsByArticleID, middleware.AuthMiddleware).Name = "article-version.list-by-article-id"
 	r.PUT("/articles/:article_id/versions", u.UpdateArticleVersion, middleware.AuthEditorMiddleware).Name = "article-version.create"
-	r.GET("/articles/:article_id/versions/:version_number", u.GetArticleVersionByArticleID).Name = "article-version.get-by-article-id"
+	r.GET("/articles/:article_id/versions/:version_number", u.GetArticleVersionByArticleID, middleware.AuthMiddleware).Name = "article-version.get-by-article-id"
 }
