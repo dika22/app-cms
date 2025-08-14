@@ -81,6 +81,7 @@ func (h ArticleHTTP) Create(c echo.Context) error {
 // @Tags         articles
 // @Accept       json
 // @Produce      json
+// @Param        Authorization header string true "Bearer token"
 // @Param        request body structs.RequestUpdatePublishArticle true "Article to update"
 // @Success      200  {object}  structs.Response
 // @Router /api/v1/articles/:id [put]
@@ -130,6 +131,7 @@ func (h ArticleHTTP) GetByID(c echo.Context) error {
 // @Tags         articles
 // @Accept       json
 // @Produce      json
+// @Param        Authorization header string true "Bearer token"
 // @Param        id path int true "Article ID"
 // @Success      200      {object}  structs.Response
 // @Router       /api/v1/articles/:id [delete]

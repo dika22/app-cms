@@ -8,6 +8,8 @@ import (
 	articleUsecase "news-service/internal/domain/article/usecase"
 
 	avUsecase "news-service/internal/domain/article-version/usecase"
+	tagsUsecase "news-service/internal/domain/tags/usecase"
+
 	authorRepository "news-service/internal/domain/author/repository"
 	tagsRepository "news-service/internal/domain/tags/repository"
 
@@ -42,8 +44,10 @@ func main() {
 
   artUsecase := articleUsecase.NewsUsecase(dbConn, articleRepo, authorRepo, tagsRepo, avRepo, conf, cacheArticleRepo)
   avUc := avUsecase.NewArticleVersionUsecase(avRepo, tagsRepo)
+  tagsUsecase := tagsUsecase.NewTagsUsecase(tagsRepo)
+  
   cmds := []*cli.Command{}
-  cmds = append(cmds, api.ServeAPI(conf, validate, artUsecase, avUc)...)
+  cmds = append(cmds, api.ServeAPI(conf, validate, artUsecase, avUc, tagsUsecase)...)
   cmds = append(cmds, migrate.NewMigrate(dbConn)...)
   app := &cli.App{
     Name: "news-service",

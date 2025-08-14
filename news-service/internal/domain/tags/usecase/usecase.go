@@ -8,7 +8,7 @@ import (
 )
 
 type TagsUsecase struct {
-	repo repository.TagsRepository
+	repo repository.ITagsRepository
 }
 
 type ITags interface {
@@ -21,7 +21,7 @@ type ITags interface {
 }
 
 
-func NewTagsUsecase(repo repository.TagsRepository) ITags {
+func NewTagsUsecase(repo repository.ITagsRepository) ITags {
 	return &TagsUsecase{
 		repo: repo,
 	}

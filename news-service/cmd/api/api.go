@@ -76,8 +76,8 @@ func (h HTTP) ServeAPI(c *cli.Context) error  {
 	articleAPI.Use(middleware.MonitoringMiddleware)
 
 	delivery.NewArticleHTTP(articleAPI, h.usecase, h.v)
-	deliveryTags.NewTagHTTP(articleAPI, h.ucTags, h.v)
 	deliveryArticleVersion.NewArticleVersionHTTP(articleAPI, h.ucArticleVersion, h.v)
+	deliveryTags.NewTagHTTP(articleAPI, h.ucTags, h.v)
 
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer stop()
@@ -100,8 +100,9 @@ func (h HTTP) ServeAPI(c *cli.Context) error  {
 func ServeAPI(conf *config.Config, v *validator.Validator, 
 	usecase usecase.IArticle,
 	avUsecase ucArticleVersion.IArticleVersionUsecase,
+	tagsUsecase ucTags.ITags,
 	) []*cli.Command {
-	h := &HTTP{conf: conf, usecase: usecase, ucArticleVersion: avUsecase, v: v}
+	h := &HTTP{conf: conf, usecase: usecase, ucArticleVersion: avUsecase, ucTags: tagsUsecase, v: v}
 	return []*cli.Command{
 		{
 			Name: CmdServeHTTP,

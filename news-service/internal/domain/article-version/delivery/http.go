@@ -42,6 +42,7 @@ func (h ArticleVersionHTTP) GetAll(c echo.Context) error {
 // @Tags         articles
 // @Accept       json
 // @Produce      json
+// @Param        Authorization header string true "Bearer token"
 // @Param        id path int true "Article ID"
 // @Param        request body structs.RequestCreateArticleVersion true "Article version to create"
 // @Success      201      {object}  structs.Response
@@ -68,6 +69,7 @@ func (h ArticleVersionHTTP) UpdateArticleVersion(ctx echo.Context) error {
 // @Description  Get all versions of a specific article using its ID
 // @Tags         article-versions
 // @Produce      json
+// @Param        Authorization header string true "Bearer token"
 // @Param        article_id path int true "Article ID"
 // @Success      200 {object} structs.Response
 // @Router       /api/v1/articles/{article_id}/versions [get]
@@ -90,6 +92,7 @@ func (h ArticleVersionHTTP) ListArticleVersionsByArticleID(c echo.Context) error
 // @Tags         article-versions
 // @Accept       json
 // @Produce      json
+// @Param        Authorization header string true "Bearer token"
 // @Param        id path int true "Article ID"
 // @Param        version_number path int true "Version number"
 // @Success      200      {object}  structs.Response
@@ -116,6 +119,7 @@ func (h ArticleVersionHTTP) GetArticleVersionByID(ctx echo.Context) error {
 // @Tags         article-versions
 // @Accept       json
 // @Produce      json
+// @Param        Authorization header string true "Bearer token"
 // @Param        article_id path int true "Article ID"
 // @Param        version_number path int true "Version number"
 // @Success      200      {object}  structs.Response
