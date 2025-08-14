@@ -9,8 +9,6 @@ Deskripsi singkat tentang proyek Golang ini.
 
 ## Implementation
 - Ratelimit -> handle by ip per request second
-- Singleflight -> jika ada banyak request and cache expired, 
-  hanya akan ada 1 request yang melakukan query ke DB dan write ke cache
 
 ## 🛠️ Teknologi
 
